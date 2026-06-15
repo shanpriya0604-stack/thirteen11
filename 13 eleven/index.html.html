@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thirteen11 </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap">
+    <link rel="stylesheet" href="StyleSheet1.css">
+</head>
+<body>
+
+    <div id="welcome-popup" class="popup-overlay">
+        <div class="popup-box" style="text-align: center;">
+            <button class="close-btn" onclick="closePopup('welcome-popup')">×</button>
+            <h2 style="font-family: 'Orbitron', sans-serif; color: #FFF; font-size: 20px;">Pre-launch booking open now 🎉</h2>
+            <p style="color: #CCC; font-size: 14px;">Reserve your slots today and be among the first to experience 13:11 arena.</p>
+        </div>
+    </div>
+
+    <div id="callback-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-box">
+            <button class="close-btn" onclick="closePopup('callback-popup')">×</button>
+            <h2 style="text-align: center; font-family: 'Orbitron', sans-serif; font-size: 20px; color: #FFF;">Get a Callback</h2>
+            <form class="callback-form" onsubmit="handleFormSubmit(event, 'Callback Request')">
+                <div class="form-group">
+                    <label>Sports</label>
+                    <div class="checkbox-row">
+                        <label class="checkbox-label"><input type="checkbox" name="sports" value="Football"> Football</label>
+                        <label class="checkbox-label"><input type="checkbox" name="sports" value="Cricket"> Cricket</label>
+                    </div>
+                </div>
+                <div class="form-group"><label>Mobile No</label><input type="tel" class="form-input" placeholder="Enter mobile number" required></div>
+                <div class="form-group"><label>Name</label><input type="text" class="form-input" placeholder="Enter full name" required></div>
+                <div class="form-group"><label>Reason</label><input type="text" class="form-input" placeholder="Reason for callback" required></div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="slots-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-box">
+            <button class="close-btn" onclick="closePopup('slots-popup')">×</button>
+
+            <div id="slots-main-view">
+                <h2 class="bulk-title">Select Turf Slot</h2>
+                <p style="text-align: center; font-size: 12px; color: #888888; margin-bottom: 15px; margin-top: -10px;">Hourly booking configurations & rates</p>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Timing</th>
+                            <th>5v5<span class="sub-size">5,280 sq.ft.</span></th>
+                            <th>7v7<span class="sub-size">10,560 sq.ft.</span></th>
+                            <th>9v9<span class="sub-size">21,120 sq.ft.</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-col">☀️ Morning<br><span style="font-size:9px; color:#666;">6AM - 11AM</span></td>
+                            <td class="price-tag">₹900</td>
+                            <td class="price-tag">₹1,600</td>
+                            <td class="price-tag">₹2,800</td>
+                        </tr>
+                        <tr>
+
+
+                            <td class="time-col">🌤️ Mid Day<br><span style="font-size:9px; color:#666;">11AM - 4PM</span></td>
+                            <td class="price-tag">₹500</td>
+                            <td class="price-tag">₹1,000</td>
+                            <td class="price-tag">₹2,000</td>
+                        </tr>
+                        <tr>
+                            <td class="time-col">🌙 Evening<br><span style="font-size:9px; color:#666;">4PM - 12PM</span></td>
+                            <td class="price-tag">₹900</td>
+                            <td class="price-tag">₹1,600</td>
+                            <td class="price-tag">₹2,800</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="cta-card" style="margin-top: 25px;">
+                    <strong>Secure Your Booking Instantly:</strong>
+                    <div class="tabs-bar">
+                        <a href="tel:8884101311" class="tab-btn">📞 Call Now</a>
+                        <a href="https://wa.me/918884101311?text=Hi!%20I%20want%20to%20enquire%20about%20booking%20a%20slot%20at%20Thirteen%20Eleven%20Arena." target="_blank" class="tab-btn">📧 Enquire Now</a>
+                        <button type="button" class="tab-btn" onclick="showQuoteForm('slots')">📝 Request Quote</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="slots-quote-view" style="display: none;">
+                <button type="button" class="back-form-btn" onclick="hideQuoteForm('slots')">← Back to Rates</button>
+                <h2 class="bulk-title" style="font-size:20px; margin-bottom: 5px;">Request a Quote</h2>
+                <form class="callback-form" onsubmit="handleFormSubmit(event, 'Slot Quote Inquiry')">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="whatsapp-name" class="form-input" placeholder="Your full name required" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Organization</label>
+                            <input type="text" id="whatsapp-org" class="form-input" placeholder="Company/Club name (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="tel" id="whatsapp-phone" class="form-input" placeholder="Enter active mobile number" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="whatsapp-email" class="form-input" placeholder="Your email" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SUBMIT QUOTE REQUEST</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="bulk-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-box" style="max-height: 85vh; overflow-y: auto;">
+            <button class="close-btn" onclick="closePopup('bulk-popup')">×</button>
+
+            <div id="bulk-main-view">
+                <h2 class="bulk-title" style="font-size: 24px;">Bulk Bookings</h2>
+
+                <div class="bulk-subtitle" style="color: #00B0FF; margin-top: 15px; margin-bottom: 5px;">Perfect for:</div>
+                <ul class="bulk-list" style="margin-bottom: 20px;">
+                    <li>Corporate Events & Team Building</li>
+                    <li>Football Leagues & Tournaments</li>
+                    <li>School & College Sports Events</li>
+                    <li>Coaching Academies</li>
+                    <li>Sports Clubs & Community Groups</li>
+                </ul>
+
+                <div class="bulk-subtitle" style="color: #00E676; margin-bottom: 5px;">Benefits:</div>
+                <ul class="bulk-list" style="margin-bottom: 25px;">
+                    <li>Preferential pricing for multiple bookings</li>
+                    <li>Priority slot allocation</li>
+                    <li>Dedicated event support</li>
+                    <li>Custom tournament setup</li>
+                    <li>Branding opportunities for corporate events</li>
+                    <li>Flexible booking packages</li>
+                </ul>
+
+                <div class="cta-card" style="margin-top: 20px; text-align: center; background: #111; border-left: 4px solid #00B0FF; padding: 15px;">
+                    <p style="color: #FFF; font-weight: 600; margin-bottom: 5px; font-size: 14px;">Need multiple slots or planning an event?</p>
+                    <p style="color: #AAA; font-size: 13px; margin-bottom: 15px;">Contact our team for customized packages and exclusive bulk booking rates.</p>
+
+                    <div class="tabs-bar">
+                        <a href="tel:8884101311" class="tab-btn">📞 Call Now</a>
+                        <a href="https://wa.me/918884101311?text=Hi!%20I%20want%20to%20enquire%20about%20Bulk%20Bookings%20at%20Thirteen%20Eleven%20Arena." target="_blank" class="tab-btn">📧 Enquire Now</a>
+                        <button type="button" class="tab-btn" onclick="showQuoteForm('bulk')">📝 Request a Quote</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bulk-quote-view" style="display: none;">
+                <button type="button" class="back-form-btn" onclick="hideQuoteForm('bulk')">← Back to Overview</button>
+                <h2 class="bulk-title" style="font-size:20px; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 8px;">Bulk Booking Inquiry</h2>
+                <form class="callback-form" onsubmit="handleFormSubmit(event, 'Bulk Event Quote Inquiry')">
+                    <div class="form-row">
+                        <div class="form-group"><label>Name</label><input type="text" class="form-input" placeholder="Your full name" required></div>
+                        <div class="form-group"><label>Organization</label><input type="text" class="form-input" placeholder="Company, School, or Club" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Mobile Number</label><input type="tel" class="form-input" placeholder="Enter mobile number" required></div>
+                        <div class="form-group"><label>Email Address</label><input type="email" class="form-input" placeholder="Your corporate or personal email" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Type of Event</label><input type="text" class="form-input" placeholder="e.g., Tournament, Team Building, Academy Training" required></div>
+                        <div class="form-group"><label>Number of Participants</label><input type="number" class="form-input" placeholder="Estimated attendance count" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Preferred Date(s)</label><input type="text" class="form-input" placeholder="e.g., Oct 14th or Weekly Saturdays" required></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Requirements</label>
+                        <textarea class="form-input" style="height: 60px; resize: none; font-family: inherit; padding-top: 8px;" placeholder="Food & beverage requests, custom timing setup, branding flags, equipment needs..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="margin-top: 10px;">Submit Inquiry Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <header class="premium-header">
+        <div class="logo-title-group">
+            <div class="logo-frame"><img src="logo.jpg?v=1" alt="Thirteen XI Logo"></div>
+            <div class="header-title-container">
+                <h1 class="arena-main-title">THIRTEEN<span style=" color: #00E676;">11</span></h1>
+                <p class="arena-address">Hulimangala Road, Electronic City, Phase I, Vabasandra, Hulimangala, Karnataka 560105</p>
+            </div>
+        </div>
+        <button class="menu-button" onclick="openMenu()"><span></span><span></span><span></span></button>
+    </header>
+
+    <div class="neon-divider"></div>
+
+    <nav class="action-bar">
+        <a href="https://www.google.com/maps/search/?api=1&query=Thirteen+Eleven+Arena+Hulimangala+Road+Electronic+City+Phase+I+Vabasandra+Karnataka+560105" target="_blank" class="action-link">📍 Locate on map</a>
+        <button class="action-link" onclick="openPopup('callback-popup')">📞 Get a Callback</button>
+        <a href="tel:8884101311" class="action-link">💬 Contact Us</a>
+    </nav>
+
+    <section class="bio-section">
+        <p class="arena-sub-text">sports • energy • lifestyle</p>
+    </section>
+
+    <div class="booking-container">
+        <button class="main-booking-btn btn-slots" onclick="openPopup('slots-popup')">Book Slots</button>
+        <button class="main-booking-btn btn-bulk" onclick="openPopup('bulk-popup')">Bulk Bookings</button>
+    </div>
+
+    <section class="arena-photo-section">
+        <div class="photo-wrapper" style="border-color: #00B0FF; box-shadow: 0 12px 35px rgba(0, 176, 255, 0.3);">
+            <img src="arena.jpg" alt="Thirteen Eleven Arena Top View">
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-text-content">
+            <h2 class="about-header-title">🔥 About Venue</h2>
+            <p class="about-body-p">
+                Thirteen11 Arena is a premier, dynamic sports hub meticulously engineered for high-energy matches, professional training, and vibrant community gatherings. Renowned for our meticulously maintained, spacious turf layouts and state-of-the-art infrastructure, we serve as the ultimate go-to destination for elite football, box cricket, and professional recreational play in a lively, ultra-modern setting.
+            </p>
+            <p class="about-body-p">
+                The arena thrives on its vibrant athletic atmosphere, proudly hosting professional competitive leagues, corporate tournaments, friendly matches, and expert training sessions that unite local athletes. Our architectural design intentionally balances peak athletic performance with recreational engagement, making it pristine for rigorous team practices as well as casual, high-spirited weekend games.
+            </p>
+            <p class="about-body-p">
+                Whether you are chasing goals under our premium commercial floodlights or enjoying a spirited team clash with friends, Thirteen11 Arena guarantees an unmatched blend of excitement, camaraderie, and unforgettable sporting moments. ⚽🏏🥎
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="about-text-content">
+            <h2 class="about-header-title" style="color: #00B0FF; margin-bottom: 30px;">⚡ Our Facilities</h2>
+
+            <div style="margin-bottom: 35px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; border-left: 3px solid #00B0FF; padding-left: 8px;">Turf Specifications</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">📐</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Massive Play Area</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Spacious, premium ground footprint spanning up to 24,150 sq. ft.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">🌱</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">FIFA-Approved Turf</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">High-grade artificial turf designed for elite performance and joint safety.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">⚽</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Convertible Formats</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Full 9-a-side football pitch, seamlessly scaling down into 7v7 and 5v5 action grids.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">🌧️</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">All-Weather Drainage</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Engineered gravel base and premium sub-surface drainage layout preventing waterlogs.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">💡</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Uniform Floodlights</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Advanced, balanced commercial LED array providing shadowless play at night.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 15px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="font-size: 20px; display: block; margin-bottom: 6px;">🕸️</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Secure Boundary Nets</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Heavy-duty perimeter netting and steel structural poles for unhindered ball recovery.</span></div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 45px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; border-left: 3px solid #00B0FF; padding-left: 8px;">Vehicle Management</h3>
+                <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid #222; border-left: 4px solid #00B0FF; padding: 18px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px;">
+                    <span style="font-size: 32px;">🚗🏍️</span>
+                    <div>
+                        <span style="font-size: 14px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Ample Dedicated Parking</span>
+                        <span style="font-size: 12px; color: #AAA; line-height: 1.4;">Extensive, clean, and organized parking infrastructure allocated specifically for both two-wheelers and cars.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="about-header-title" style="color: #00E676; margin-bottom: 10px; font-size: 20px;">🚀 Future Add-Ons</h2>
+                <p style="color: #888; font-size: 12px; margin-bottom: 20px; margin-top: -5px;">Upcoming expansions currently engineered for deployment</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">🚿</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Washrooms & Changing</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Pristine, well-maintained sanitation blocks featuring separate toilets, showers, private changing spaces, and secured locker blocks.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">🥤</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Refreshment Corner</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Dedicated on-site hydration and quick snack kiosk curated for mid-game recovery.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">☕</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Premium Cafeteria</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">An upscale food layout curated with robust meals and specialized energy tracking options.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">🪑</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Spectator Tier Seating</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Comfortable, elevated gallery seating blocks optimized for fans and tournament audiences.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">🏸</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">Additional Sports Courts</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Multi-sport structural expansion broadening core play variants to multiple alternative sports.</span></div>
+                    <div style="background: rgba(17, 17, 17, 0.7); border: 1px solid rgba(0, 230, 118, 0.1); border-left: 4px solid #00E676; padding: 18px; border-radius: 6px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"><span style="position: absolute; top: 8px; right: 8px; background: #00E676; color: #000; font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;">SOON</span><span style="font-size: 22px; display: block; margin-bottom: 6px;">🛍️</span><span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 4px;">In-Arena Retail Store</span><span style="font-size: 11px; color: #AAA; line-height: 1.4; display: block;">Exclusive on-site retail outlet stocked with professional sports clothing, footwear, grip kits, and custom training accessories.</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="arena-photo-section">
+        <div class="photo-wrapper" style="border-color: #00B0FF; box-shadow: 0 12px 35px rgba(0, 176, 255, 0.3);">
+            <img src="bottom-arena.jpg" alt="Thirteen Eleven Arena Bottom View">
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-text-content">
+            <h2 class="about-header-title" style="color: #00B0FF;">🎯 Mission</h2>
+            <p class="about-body-p">
+                To create an elite, 24/7 high-energy sports hub that shatters boundaries and welcomes everyone—from passionate students breaking sweat between classes, to competitive corporate squads building team chemistry, and casual players seeking high-spirited weekend matches.
+            </p>
+            <p class="about-body-p">
+                13:11 Arena is intentionally engineered to ignite and foster a deep, lifelong passion for sports. By delivering a top-tier, uncompromising venue experience, we aim to elevate the standards of recreational and competitive play, ensuring every single sports enthusiast in our local community has absolute access to pristine grounds and a supportive athletic environment.
+            </p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-text-content">
+            <h2 class="about-header-title" style="color: #00E676;">👁️ Vision</h2>
+            <p class="about-body-p">
+                To firmly establish 13:11 Arena as the absolute gold standard and leading multi-sport facility in the region, recognized for our high-class operational service, premium infrastructure, and fiercely inclusive environment.
+            </p>
+            <p class="about-body-p">
+                We envision a state-of-the-art space where athletes of all skill levels can seamlessly train at their highest capacity, compete fiercely in organized leagues, and decompress seamlessly. By introducing dynamic chill-out zones, expert-led coaching academies, and community events, we aim to cultivate an ecosystem that actively inspires both structural athletic success and lasting personal growth.
+            </p>
+        </div>
+    </section>
+
+    <section class="arena-photo-section">
+        <div class="photo-wrapper" style="border-color: #00B0FF; box-shadow: 0 12px 35px rgba(0, 176, 255, 0.3);">
+            <img src="mission-vision-combined.jpg" alt="Thirteen Eleven Arena Mission and Vision Combined Bottom View">
+        </div>
+    </section>
+
+    <section class="about-section" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="about-text-content" style="background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid #1a1a1a; padding: 25px; border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,176,255,0.05);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span style="font-family: 'Orbitron', sans-serif; font-size: 10px; color: #00B0FF; letter-spacing: 3px; display: block; margin-bottom: 5px; text-transform: uppercase;">The 13:11 Edge</span>
+                <h2 class="about-header-title" style="color: #FFF; margin: 0; font-size: 24px;">🏆 Why Choose Us?</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #00B0FF;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(0, 176, 255, 0.15); display: block; line-height: 1; margin-bottom: 5px;">BUILT PRO</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Professional Standards</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Meticulously designed dimensions, structural safety lines, and professional grade framing nets.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #00E676;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(0, 230, 118, 0.15); display: block; line-height: 1; margin-bottom: 5px;">ZERO RISK</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Player-Friendly Surface</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Premium, impact-absorbent cushioning designed intentionally to protect knees, joints, and ankles during sudden stops.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #FFEA00;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(255, 234, 0, 0.15); display: block; line-height: 1; margin-bottom: 5px;">1-CLICK</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Reliable Booking System</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Zero overlaps, instant automated logging, and seamless callback access routed directly to your device.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #FF3D00;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(255, 61, 0, 0.15); display: block; line-height: 1; margin-bottom: 5px;">PRISTINE</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Maintenance & Hygiene</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Rigorous scheduled turf brushing, debris clearance, and intense sanitation intervals across the arena.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #00B0FF;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(0, 176, 255, 0.15); display: block; line-height: 1; margin-bottom: 5px;">GROWTH</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Player Experience First</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Deep strategic focus on fostering local community talent, competitive ecosystems, and amateur development.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #00E676;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(0, 230, 118, 0.15); display: block; line-height: 1; margin-bottom: 5px;">24 / 7</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Action-Ready Access</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">Play whenever your squad wants. Premium commercial lighting means peak daytime vision, even at midnight.</span>
+                </div>
+                <div style="background: #090909; border: 1px solid #151515; padding: 20px; border-radius: 8px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #FFEA00;"></div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: rgba(255, 234, 0, 0.15); display: block; line-height: 1; margin-bottom: 5px;">TRUE PACE</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #FFF; display: block; font-family: 'Orbitron', sans-serif; margin-bottom: 6px;">Pro-Grade Ball Dynamics</span>
+                    <span style="font-size: 11px; color: #888; line-height: 1.4; display: block;">No awkward bad bounces or slips. Designed for ultra-smooth ball rolls and precision cuts.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="about-text-content" style="background: transparent; border: none; padding: 10px; box-shadow: none;">
+
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span style="font-family: 'Orbitron', sans-serif; font-size: 10px; color: #00E676; letter-spacing: 3px; display: block; margin-bottom: 5px; text-transform: uppercase;">Tailored Sports Ecosystem</span>
+                <h2 class="about-header-title" style="color: #FFF; margin: 0; font-size: 24px;">🎯 Ideal For</h2>
+            </div>
+
+            <div style="max-width: 700px; margin: 0 auto; position: relative; padding-left: 30px; border-left: 2px dashed #222;">
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #00B0FF; box-shadow: 0 0 10px #00B0FF;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        🏆 Football Academies & Training Hubs
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">Engineered for high-frequency technical drills. Premium turf sub-cushioning provides structural protection for growing joints during intensive squad training layouts.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #00E676; box-shadow: 0 0 10px #00E676;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        🎓 School & College Varsity Teams
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">The perfect match-fit simulation base. Spacious convertible dimensions adapt seamlessly to official institutional tournament layouts and seasonal team trials.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #FFEA00; box-shadow: 0 0 10px #FFEA00;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        👟 Private Coaching & 1-on-1 Clinics
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">A distraction-free tactical arena setting. Ideal for focused individual skill masteries, metabolic tracking runs, and localized player analysis performance.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #FF3D00; box-shadow: 0 0 10px #FF3D00;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        ⚡ Weekend Leagues & High-Stakes Cups
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">Recreate a high-octane stadium atmosphere. Shadowless commercial lighting setups and rigorous fencing boundaries support intense competitive bracket fixtures.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #00B0FF; box-shadow: 0 0 10px #00B0FF;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        💼 Corporate Clashes & Active Mixers
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">Trade office routines for high-energy turf play. Designed to host smooth inter-company leagues, premium team-building nights, or late-night corporate runs.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #00E676; box-shadow: 0 0 10px #00E676;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        🎂 Private Sports Gatherings & Events
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">Perfect for active milestone celebrations, community screenings, fan club mixers, or customized athletic birthday layouts.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 32px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #FFEA00; box-shadow: 0 0 10px #FFEA00;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        🌟 Sports Creators & Media Production
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">An ultra-modern neon aesthetic frame. The deep contrast background styling is optimal for filming high-definition cinematic reels or kit drop promotions.</p>
+                </div>
+
+                <div style="position: relative; margin-bottom: 10px;">
+                    <div style="position: absolute; left: -36px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #FF3D00; box-shadow: 0 0 10px #FF3D00;"></div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #FFF; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px;">
+                        🏏 Multi-Sport Layouts & Box Cricket
+                    </h3>
+                    <p style="font-size: 12px; color: #AAA; line-height: 1.5; margin: 0;">Flexible field lines map out instantly for alternate formats, easily shifting from football tactics to fast-paced box cricket or softball lines.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" style="margin-top: 20px; margin-bottom: 40px;">
+        <div class="about-text-content" style="background: linear-gradient(180deg, rgba(10,10,10,0.8) 0%, rgba(5,5,5,0.9) 100%); border: 1px solid #161616; padding: 25px 20px; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.6);">
+
+            <div style="text-align: center; margin-bottom: 25px;">
+                <span style="font-family: 'Orbitron', sans-serif; font-size: 9px; color: #00B0FF; letter-spacing: 4px; display: block; margin-bottom: 4px; text-transform: uppercase;">Strategic Alliances</span>
+                <h2 class="about-header-title" style="color: #FFF; margin: 0; font-size: 20px; letter-spacing: 1px;">🤝 Partnered With</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; align-items: center; justify-content: center;">
+
+                <div style="background: rgba(20, 20, 20, 0.6); border: 1px solid #222; border-top: 3px solid #00B0FF; padding: 15px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">⚽</div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; color: #FFF; display: block; letter-spacing: 0.5px;">Football Academy Remontada</span>
+                    <span style="font-size: 10px; color: #00B0FF; font-weight: 500; display: block; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">Official Training Partner</span>
+                </div>
+
+                <div style="background: rgba(20, 20, 20, 0.6); border: 1px solid #222; border-top: 3px solid #00E676; padding: 15px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">👕</div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; color: #FFF; display: block; letter-spacing: 0.5px;">Adonai Clothing</span>
+                    <span style="font-size: 10px; color: #00E676; font-weight: 500; display: block; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">Clothing and Overall Partner</span>
+                </div>
+
+                <div style="background: rgba(20, 20, 20, 0.6); border: 1px solid #222; border-top: 3px solid #FFEA00; padding: 15px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🏆</div>
+                    <span style="font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; color: #FFF; display: block; letter-spacing: 0.5px;">All India Summer Cup</span>
+                    <span style="font-size: 10px; color: #FFEA00; font-weight: 500; display: block; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">Tournament Alliance</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer style="background: #EAEAEA; border-top: 1px solid #D5D5D5; padding: 40px 20px 20px 20px; color: #1A1A1A; font-family: 'Montserrat', sans-serif; text-align: center;">
+        <div style="max-width: 600px; margin: 0 auto;">
+
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 24px; color: #000000; margin: 0 0 5px 0; letter-spacing: 1px; font-weight: 900; text-transform: uppercase;">Thirteen Eleven Arena</h2>
+            <p style="color: #555555; font-size: 11px; margin: 0 0 25px 0; letter-spacing: 2px; text-transform: lowercase; font-weight: 600;">sports • energy • lifestyle</p>
+
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
+
+                <a href="https://www.instagram.com/thirteen11.a?igsh=Z3d5bW94eGY0Nnoz" target="_blank" style="text-decoration: none; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-radius: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" title="Follow us on Instagram">
+                    <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; fill: #FFFFFF;">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                </a>
+
+                <a href="https://chat.whatsapp.com/KeL08vqS5zOB667G7Irwdm" target="_blank" style="text-decoration: none; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: #25D366; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" title="Chat on WhatsApp">
+                    <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; fill: #FFFFFF;">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.165 1.241 8.413 3.494 2.25 2.253 3.489 5.244 3.487 8.428-.003 6.557-5.342 11.905-11.893 11.905-.001 0-.001 0 0 0-2.016-.001-3.996-.511-5.741-1.48L0 24zm6.59-4.846c1.785 1.058 3.55 1.597 5.305 1.598 5.4 0 9.794-4.403 9.796-9.816.002-2.622-1.015-5.088-2.864-6.94C16.98 2.144 14.506.96 11.95.96c-5.402 0-9.797 4.405-9.8 9.818-.001 2.113.56 4.167 1.624 5.967l-.991 3.622 3.704-.9729zm12.302-6.853c-.328-.164-1.942-.958-2.242-1.069-.301-.109-.519-.164-.738.164-.218.327-.847 1.069-1.038 1.286-.192.218-.383.245-.71.082-.328-.164-1.386-.511-2.641-1.631-.977-.872-1.635-1.95-1.826-2.277-.193-.328-.021-.505.143-.668.148-.146.328-.382.492-.573.164-.191.219-.327.328-.545.11-.219.055-.409-.027-.573-.082-.164-.738-1.777-1.011-2.433-.267-.641-.539-.553-.738-.563-.19-.01-.409-.012-.628-.012-.218 0-.573.082-.874.409-.3.327-1.147 1.119-1.147 2.727 0 1.609 1.173 3.163 1.336 3.382.164.218 2.307 3.523 5.59 4.945.781.338 1.39.54 1.866.691.785.249 1.499.214 2.063.13.629-.094 1.942-.793 2.215-1.556.274-.764.274-1.419.192-1.556-.081-.136-.295-.218-.623-.382z" />
+                    </svg>
+                </a>
+
+                <a href="mailto:thirteen11.a@gmail.com" style="text-decoration: none; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: #FFFFFF; border: 1px solid #EAEAEA; border-radius: 11px; box-shadow: 0 4px 12px rgba(0,0,0,0.10);" title="Email Us">
+                    <svg viewBox="0 0 24 24" style="width: 26px; height: 26px;">
+                        <path d="M24 4.5v15c0 .83-.67 1.5-1.5 1.5H19.5V8.25L12 13.5 4.5 8.25V21H1.5c-.83 0-1.5-.67-1.5-1.5v-15c0-.83.67-1.5 1.5-1.5H3l9 6.75L21 3h1.5c.83 0 1.5.67 1.5 1.5z" fill="#EA4335" />
+                    </svg>
+                </a>
+
+            </div>
+
+            <div style="margin-bottom: 40px; text-align: left; padding-left: 10px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; font-size: 13px; color: #000000; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; border-left: 3px solid #00B0FF; padding-left: 10px; font-weight: 900;">Quick Links</h3>
+
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <a href="http://googleusercontent.com/maps.google.com/3" target="_blank" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 600; display: block;">
+                        Location
+                    </a>
+
+                    <a href="blog.html" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 600; display: block;">
+                        Blog
+                    </a>
+
+                    <a href="gallery1.html" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 600; display: block;">
+                        Gallery
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 35px; text-align: left; padding-left: 10px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; font-size: 13px; color: #000000; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px; border-left: 3px solid #00E676; padding-left: 10px; font-weight: 900;">Popular Searches</h3>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Football Turf in Bangalore</span>
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Turf near Electronic City</span>
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Box Cricket Ground Bangalore</span>
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Football Coaching Near Me</span>
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Midnight Turf Booking</span>
+                    <span style="background: #FFFFFF; border: 1px solid #D5D5D5; color: #444444; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500;">Corporate Sports Tournaments</span>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #D5D5D5; padding-top: 20px; margin-top: 25px;">
+                <p style="color: #777777; font-size: 10px; margin: 0; font-weight: 500;">© 2026 Thirteen Eleven Arena. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="Script1.js"></script>
+</body>
+</html>
